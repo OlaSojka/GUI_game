@@ -2,6 +2,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using RTS;
+using System;
 
 public class Player : MonoBehaviour {
 	
@@ -17,7 +18,20 @@ public class Player : MonoBehaviour {
 	private Building tempBuilding;
 	private Unit tempCreator;
 	private bool findingPlacement = false;
-	
+	protected string[] actions = {};
+
+	private int t=0;
+	public void AddResourcesAuto() {
+		int timeLeft = Convert.ToInt32(Time.time);
+		//Debug.Log (timeLeft);
+		if(timeLeft!=t)
+			if(timeLeft%5==0)
+		{
+			AddResource(ResourceType.Money,ResourceManager.basicMoney);
+			t = timeLeft;
+		}
+	}
+
 	/*** Game Engine Methods ***/
 	
 	void Awake() {
