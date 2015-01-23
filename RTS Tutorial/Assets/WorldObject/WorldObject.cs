@@ -303,7 +303,7 @@ public class WorldObject : MonoBehaviour {
 		Vector3 targetLocation = target.transform.position;
 		Vector3 direction = targetLocation - transform.position;
 		float targetDistance = direction.magnitude;
-		float distanceToTravel = targetDistance - (0.9f * weaponRange);
+		float distanceToTravel = targetDistance - (10.9f * weaponRange);
 		return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
 	}
 	

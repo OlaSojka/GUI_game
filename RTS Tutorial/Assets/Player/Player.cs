@@ -54,6 +54,7 @@ public class Player : MonoBehaviour {
 				else tempBuilding.SetTransparentMaterial(notAllowedMaterial, false);
 			}
 		}
+		AddResourcesAuto ();
 	}
 	
 	/*** Private Worker Methods ***/
