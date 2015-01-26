@@ -8,7 +8,6 @@ public class Tank : Unit {
 	
 	protected override void Start () {
 		base.Start ();
-		moneyOnDeath = 100;
 	}
 	
 	protected override void Update () {
@@ -54,7 +53,7 @@ public class Tank : Unit {
 	}
 	
 	protected override void AimAtTarget () {
-			base.AimAtTarget();
-			aimRotation = Quaternion.LookRotation (target.transform.position - transform.position);
+		base.AimAtTarget();
+		aimRotation = Quaternion.LookRotation (target.transform.position - transform.position);
 	}
 }

@@ -25,7 +25,7 @@ public class UserInput : MonoBehaviour {
 		Time.timeScale = 0.0f;
 		GetComponentInChildren<PauseMenu>().enabled = true;
 		GetComponent<UserInput>().enabled = false;
-		Screen.showCursor = true;
+		//Screen.showCursor = true;
 		ResourceManager.MenuOpen = true;
 	}
 	
@@ -34,7 +34,11 @@ public class UserInput : MonoBehaviour {
 		//float ypos = Input.mousePosition.y;
 		Vector3 movement = new Vector3(0,0,0);
 		bool mouseScroll = false;
+
+		float maxCameraX = 66.5f;
+		float minCameraX = -66.5f;		
 		
+		//Debug.Log(Camera.main.transform.position.x);
 		//horizontal camera movement
 		if(xpos >= 0 && xpos < ResourceManager.ScrollWidth) {
 			movement.x -= ResourceManager.ScrollSpeed;
@@ -67,8 +71,23 @@ public class UserInput : MonoBehaviour {
 		
 		//calculate desired camera position based on received input
 		Vector3 origin = Camera.main.transform.position;
+		//Vector3 originMiniMap = Camera.allCameras[1].transform.position;
 		Vector3 destination = origin;
-		destination.x += movement.x;
+		//Vector3 destinationMiniMap = originMiniMap;
+		//	Debug.Log(destination.x);
+		if(destination.x + movement.x < minCameraX) {
+			destination.x = minCameraX;
+		//	destinationMiniMap.x = minCameraX;
+		}
+		else if(destination.x + movement.x > maxCameraX) {
+			destination.x = maxCameraX;
+		//	destinationMiniMap.x = maxCameraX;
+		}
+		else {
+			destination.x += movement.x;
+		//	destinationMiniMap.x = movement.x;
+		}
+		//destination.x += movement.x;
 		destination.y += movement.y;
 		destination.z += movement.z;
 		
@@ -82,6 +101,7 @@ public class UserInput : MonoBehaviour {
 		//if a change in position is detected perform the necessary update
 		if(destination != origin) {
 			Camera.main.transform.position = Vector3.MoveTowards(origin, destination, Time.deltaTime * ResourceManager.ScrollSpeed);
+		//	Camera.allCameras[1].transform.position = Vector3.MoveTowards(originMiniMap, destinationMiniMap, Time.deltaTime * ResourceManager.ScrollSpeed);
 		}
 		
 		//set cursor back to default state it should be in
@@ -135,7 +155,7 @@ public class UserInput : MonoBehaviour {
 	}
 	
 	private void RightMouseClick() {
-		if(player.hud.MouseInBounds() && !Input.GetKey(KeyCode.LeftAlt) && player.SelectedObject) {
+		if(player.hud.MouseInBounds() && player.SelectedObject) {
 			if(player.IsFindingBuildingLocation()) {
 				player.CancelBuildingPlacement();
 			} else {

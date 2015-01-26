@@ -75,7 +75,7 @@ public class Unit : WorldObject {
 		}
 	}
 	
-	public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
+	/*public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		base.MouseClick(hitObject, hitPoint, controller);
 		//only handle input if owned by a human player and currently selected
 		/*if(player && player.human && currentlySelected) {
@@ -92,8 +92,8 @@ public class Unit : WorldObject {
 				Vector3 destination = new Vector3(x, y, z);
 				StartMove(destination);
 			}
-		}*/
-	}
+		}/
+	}*/
 	
 	public virtual void StartMove(Vector3 destination) {
 		if(audioElement != null) audioElement.Play (moveSound);

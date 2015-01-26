@@ -18,12 +18,11 @@ public class Worker : WorkerUnit {
 	
 	protected override void Start () {
 		base.Start();
-		actions = new string[] {"Refinery", "WarFactory", "WarFactory2", "Turret"};
+		actions = new string[] {"Refinery", "WarFactory", "Turret"};
 		if(player && loadedSavedValues && loadedProjectId >= 0) {
 			WorldObject obj = player.GetObjectForId(loadedProjectId);
 			if(obj.GetType().IsSubclassOf(typeof(Building))) currentProject = (Building)obj;
 		}
-		//isWorker = true;
 	}
 
 	protected override void DrawSelectionBox(Rect selectBox) {
@@ -71,7 +70,6 @@ public class Worker : WorkerUnit {
 	public override void PerformAction (string actionToPerform) {
 		base.PerformAction (actionToPerform);
 		CreateBuilding(actionToPerform);
-		
 	}
 	
 	public override void StartMove(Vector3 destination) {
@@ -137,8 +135,5 @@ public class Worker : WorkerUnit {
 	private void CreateBuilding(string buildingName) {
 		Vector3 buildPoint = new Vector3(transform.position.x, transform.position.y, transform.position.z + 10);
 		if(player) player.CreateBuilding(buildingName, buildPoint, this, playingArea);
-		
-		
-		
 	}
 }

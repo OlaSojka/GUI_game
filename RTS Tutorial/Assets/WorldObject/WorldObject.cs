@@ -12,8 +12,6 @@ public class WorldObject : MonoBehaviour {
 	public float weaponRange = 10.0f, weaponRechargeTime = 1.0f, weaponAimSpeed = 1.0f, detectionRange = 20.0f;
 	public AudioClip attackSound, selectSound, useWeaponSound;
 	public float attackVolume = 1.0f, selectVolume = 1.0f, useWeaponVolume = 1.0f;
-	public int moneyOnDeath;
-	public bool isWorker = false;
 	
 	//Variables accessible by subclass
 	protected Player player;
@@ -81,8 +79,6 @@ public class WorldObject : MonoBehaviour {
 		if(ShouldMakeDecision()) DecideWhatToDo();
 		currentWeaponChargeTime += Time.deltaTime;
 		if(attacking && !movingIntoPosition && !aiming) PerformAttack();
-		Player[] players = GameObject.FindObjectsOfType(typeof(Player)) as Player[];
-		Debug.Log (players[0].resources[ResourceType.Money]+"   "+players[1].resources[ResourceType.Money]);
 	}
 	
 	protected virtual void OnGUI() {
@@ -111,7 +107,6 @@ public class WorldObject : MonoBehaviour {
 		//Debug.Log("make decision for " + ObjectId + ": " + objectName + ", controlled by " + (player == null ? "no one" : player.username));
 		Vector3 currentPosition = transform.position;
 		nearbyObjects = WorkManager.FindNearbyObjects(currentPosition, detectionRange);
-			
 		if(CanAttack()) {
 			List<WorldObject> enemyObjects = new List<WorldObject>();
 			foreach(WorldObject nearbyObject in nearbyObjects) {
@@ -248,16 +243,7 @@ public class WorldObject : MonoBehaviour {
 	
 	public void TakeDamage(int damage) {
 		hitPoints -= damage;
-		Player[] players = GameObject.FindObjectsOfType(typeof(Player)) as Player[];
-		if(hitPoints<=0) 
-		{
-			if(this.IsOwnedBy(players[0]))
-				players[1].AddResource(ResourceType.Money,this.moneyOnDeath);
-			if(this.IsOwnedBy(players[1]))
-				players[0].AddResource(ResourceType.Money,this.moneyOnDeath);
-			Destroy(gameObject);
-			
-		}
+		if(hitPoints<=0) Destroy(gameObject);
 	}
 	
 	/*** Private worker methods ***/
@@ -282,8 +268,8 @@ public class WorldObject : MonoBehaviour {
 	private void BeginAttack(WorldObject target) {
 		if(audioElement != null) audioElement.Play(attackSound);
 		this.target = target;
-		//Worker temp = target.GetComponent<Worker>();
-		//if(isWorker)
+		Worker temp = target.GetComponent<Worker>();
+		if(!temp)
 		{
 			if(TargetInRange()) {
 				attacking = true;

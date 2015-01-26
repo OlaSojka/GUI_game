@@ -97,4 +97,7 @@ public class Menu : MonoBehaviour {
 	protected void ExitGame() {
 		Application.Quit();
 	}
+
+	protected virtual void Help() {
+	}
 }

@@ -2,16 +2,14 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using RTS;
-using System;
 
 public class Building : WorldObject {
 	
 	public float maxBuildProgress = 10.0f;
-	public Texture2D rallyPointImage, sellImage;
+	public Texture2D /*rallyPointImage,*/ sellImage;
 	public AudioClip finishedJobSound;
 	public float finishedJobVolume = 1.0f;
-	private int t=0;
-	public int addMoneyVal;
+	
 	protected Vector3 spawnPoint;//, rallyPoint;
 	protected Queue<string> buildQueue;
 	
@@ -23,7 +21,7 @@ public class Building : WorldObject {
 	protected override void Awake() {
 		base.Awake();
 		buildQueue = new Queue<string>();
-		float spawnX = selectionBounds.center.x; //+ transform.forward.x * selectionBounds.extents.x + transform.forward.x * 10;
+		float spawnX = selectionBounds.center.x + transform.forward.x * selectionBounds.extents.x + transform.forward.x * 10;
 		float spawnZ = selectionBounds.center.z + transform.forward.z + selectionBounds.extents.z + transform.forward.z * 10;
 		spawnPoint = new Vector3(spawnX, 0.0f, spawnZ);
 		//rallyPoint = spawnPoint;
@@ -42,19 +40,11 @@ public class Building : WorldObject {
 		sounds.Add(finishedJobSound);
 		volumes.Add (finishedJobVolume);
 		audioElement.Add(sounds, volumes);
-		}
+	}
 	
 	protected override void Update () {
 		base.Update();
-		//ProcessBuildQueue();
-		int timeLeft = Convert.ToInt32(Time.time);
-			if(timeLeft!=t)
-				if(timeLeft%30==0)
-				{
-					if(this.name.Equals("WarFactory"))
-						CreateUnit("Tank");
-					t = timeLeft;
-				}
+		ProcessBuildQueue();
 	}
 	
 	protected override void OnGUI() {
@@ -67,22 +57,22 @@ public class Building : WorldObject {
 	protected void CreateUnit(string unitName) {
 		GameObject unit = ResourceManager.GetUnit(unitName);
 		Unit unitObject = unit.GetComponent<Unit>();
-		player.AddUnit(unitName, spawnPoint, /*rallyPoint,*/ transform.rotation, this);
-		if(audioElement != null) audioElement.Play(finishedJobSound);
+		if(player && unitObject) player.RemoveResource(ResourceType.Money, unitObject.cost);
+		buildQueue.Enqueue(unitName);
 	}
 	
-//	protected void ProcessBuildQueue() {
-//		if(buildQueue.Count > 0) {
-//			currentBuildProgress += Time.deltaTime * ResourceManager.BuildSpeed;
-//			if(currentBuildProgress > maxBuildProgress) {
-//				if(player) {
-//					player.AddUnit(buildQueue.Dequeue(), spawnPoint, /*rallyPoint,*/ transform.rotation, this);
-//					if(audioElement != null) audioElement.Play(finishedJobSound);
-//				}
-//				currentBuildProgress = 0.0f;
-//			}
-//		}
-//	}
+	protected void ProcessBuildQueue() {
+		if(buildQueue.Count > 0) {
+			currentBuildProgress += Time.deltaTime * ResourceManager.BuildSpeed;
+			if(currentBuildProgress > maxBuildProgress) {
+				if(player) {
+					player.AddUnit(buildQueue.Dequeue(), spawnPoint, /*rallyPoint,*/ transform.rotation, this);
+					if(audioElement != null) audioElement.Play(finishedJobSound);
+				}
+				currentBuildProgress = 0.0f;
+			}
+		}
+	}
 	
 	/*** Public methods ***/
 	
@@ -97,7 +87,7 @@ public class Building : WorldObject {
 		return currentBuildProgress / maxBuildProgress;
 	}
 	
-	public override void SetSelection(bool selected, Rect playingArea) {
+	/*public override void SetSelection(bool selected, Rect playingArea) {
 		base.SetSelection(selected, playingArea);
 		if(player) {
 			//RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
@@ -111,21 +101,21 @@ public class Building : WorldObject {
 				//if(flag && player.human) flag.Disable();
 			//}
 		}
-	}
-	
-	/*public bool hasSpawnPoint() {
-		return spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition;
 	}*/
 	
-	public override void SetHoverState(GameObject hoverObject) {
+	public bool hasSpawnPoint() {
+		return spawnPoint != ResourceManager.InvalidPosition; //&& rallyPoint != ResourceManager.InvalidPosition;
+	}
+	
+	/*public override void SetHoverState(GameObject hoverObject) {
 		base.SetHoverState(hoverObject);
 		//only handle input if owned by a human player and currently selected
 		/*if(player && player.human && currentlySelected) {
 			if(WorkManager.ObjectIsGround(hoverObject)) {
 			//	if(player.hud.GetPreviousCursorState() == CursorState.RallyPoint) player.hud.SetCursorState(CursorState.RallyPoint);
 			}
-		}*/
-	}
+		}/
+	}*/
 	
 	/*public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		base.MouseClick(hitObject, hitPoint, controller);
@@ -148,13 +138,8 @@ public class Building : WorldObject {
 	}*/
 	
 	public void Sell() {
-		if(player) 
-		{
-			player.basicMoney -= this.addMoneyVal;
-			player.AddResource(ResourceType.Money, sellValue);
-		}
+		if(player) player.AddResource(ResourceType.Money, sellValue);
 		if(currentlySelected) SetSelection(false, playingArea);
-		
 		Destroy(this.gameObject);
 	}
 	
@@ -212,5 +197,4 @@ public class Building : WorldObject {
 		DrawHealthBar(selectBox, "Building ...");
 		GUI.EndGroup();
 	}
-	
 }

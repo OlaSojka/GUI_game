@@ -27,7 +27,6 @@ public class WorkerUnit : WorldObject {
 		if(player && loadedSavedValues && loadedDestinationTargetId >= 0) {
 			destinationTarget = player.GetObjectForId(loadedDestinationTargetId).gameObject;
 		}
-		isWorker = true;
 	}
 	
 	protected override void InitialiseAudio () {

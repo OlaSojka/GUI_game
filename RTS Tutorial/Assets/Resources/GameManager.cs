@@ -54,7 +54,7 @@ public class GameManager : MonoBehaviour {
 					resultsScreen.SetMetVictoryCondition(victoryCondition);
 					resultsScreen.enabled = true;
 					Time.timeScale = 0.0f;
-					Screen.showCursor = true;
+					//Screen.showCursor = true;
 					ResourceManager.MenuOpen = true;
 					hud.enabled = false;
 				}
