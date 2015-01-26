@@ -14,20 +14,22 @@ public class Player : MonoBehaviour {
 	public Material notAllowedMaterial, allowedMaterial;
 	public Color teamColor;
 	
-	private Dictionary<ResourceType,int> resources, resourceLimits;
+	public Dictionary<ResourceType,int> resources, resourceLimits;
 	private Building tempBuilding;
-	private Unit tempCreator;
+	private WorkerUnit tempCreator;
 	private bool findingPlacement = false;
 	protected string[] actions = {};
+	
+	public int basicMoney = 20;
 
 	private int t=0;
 	public void AddResourcesAuto() {
 		int timeLeft = Convert.ToInt32(Time.time);
-		//Debug.Log (timeLeft);
+		//Debug.Log (resources[ResourceType.Money]);
 		if(timeLeft!=t)
 			if(timeLeft%5==0)
 		{
-			AddResource(ResourceType.Money,ResourceManager.basicMoney);
+			AddResource(ResourceType.Money,basicMoney);
 			t = timeLeft;
 		}
 	}
@@ -54,7 +56,7 @@ public class Player : MonoBehaviour {
 				else tempBuilding.SetTransparentMaterial(notAllowedMaterial, false);
 			}
 		}
-		AddResourcesAuto ();
+		AddResourcesAuto();
 	}
 	
 	/*** Private Worker Methods ***/
@@ -106,7 +108,7 @@ public class Player : MonoBehaviour {
 		} else Destroy(newUnit);
 	}
 	
-	public void CreateBuilding(string buildingName, Vector3 buildPoint, Unit creator, Rect playingArea) {
+	public void CreateBuilding(string buildingName, Vector3 buildPoint, WorkerUnit creator, Rect playingArea) {
 		GameObject newBuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), buildPoint, new Quaternion());
 		tempBuilding = newBuilding.GetComponent<Building>();
 		if (tempBuilding) {
@@ -117,6 +119,7 @@ public class Player : MonoBehaviour {
 			tempBuilding.SetTransparentMaterial(notAllowedMaterial, true);
 			tempBuilding.SetColliders(false);
 			tempBuilding.SetPlayingArea(playingArea);
+			
 		} else Destroy(newBuilding);
 	}
 	
@@ -173,6 +176,7 @@ public class Player : MonoBehaviour {
 		tempCreator.SetBuilding(tempBuilding);
 		tempBuilding.StartConstruction();
 		RemoveResource(ResourceType.Money, tempBuilding.cost);
+		basicMoney += tempBuilding.addMoneyVal;
 	}
 	
 	public void CancelBuildingPlacement() {

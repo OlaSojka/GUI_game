@@ -77,7 +77,7 @@ namespace RTS {
 				Transform parent = hitColliders[i].transform.parent;
 				if(parent) {
 					WorldObject parentObject = parent.GetComponent<WorldObject>();
-					if(parentObject && !nearbyObjectIds.Contains(parentObject.ObjectId)) {
+					if(parentObject && !nearbyObjectIds.Contains(parentObject.ObjectId) && !parentObject.isWorker) {
 						nearbyObjectIds.Add(parentObject.ObjectId);
 						nearbyObjects.Add(parentObject);
 					}
