@@ -32,6 +32,7 @@ namespace RTS {
 			
 			//Screen coordinates start in the bottom right corner, rather than the top left corner
 			//this correction is needed to make sure the selection box is drawn in the correct place
+			//Debug.Log(screenBounds.extents.y);
 			float selectBoxTop = playingArea.height - (screenBounds.center.y + screenBounds.extents.y);
 			float selectBoxLeft = screenBounds.center.x - screenBounds.extents.x;
 			float selectBoxWidth = 2 * screenBounds.extents.x;
