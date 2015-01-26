@@ -29,7 +29,8 @@ namespace RTS {
 		public static float TextHeight { get { return textHeight; } }
 		public static float Padding { get { return padding; } }
 
-		public static int basicMoney = 100;
+		
+		//public static int basicMoney = 20;
 		
 		private static GUISkin selectBoxSkin;
 		public static GUISkin SelectBoxSkin { get { return selectBoxSkin; } }

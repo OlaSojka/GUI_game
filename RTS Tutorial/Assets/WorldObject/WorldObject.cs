@@ -9,9 +9,11 @@ public class WorldObject : MonoBehaviour {
 	public string objectName = "WorldObject";
 	public Texture2D buildImage;
 	public int cost = 100, sellValue = 10, hitPoints = 100, maxHitPoints = 100;
-	public float weaponRange = 10000000.0f, weaponRechargeTime = 1.0f, weaponAimSpeed = 1.0f, detectionRange = 20000000000.0f;
+	public float weaponRange = 10.0f, weaponRechargeTime = 1.0f, weaponAimSpeed = 1.0f, detectionRange = 20.0f;
 	public AudioClip attackSound, selectSound, useWeaponSound;
 	public float attackVolume = 1.0f, selectVolume = 1.0f, useWeaponVolume = 1.0f;
+	public int moneyOnDeath;
+	public bool isWorker = false;
 	
 	//Variables accessible by subclass
 	protected Player player;
@@ -79,6 +81,8 @@ public class WorldObject : MonoBehaviour {
 		if(ShouldMakeDecision()) DecideWhatToDo();
 		currentWeaponChargeTime += Time.deltaTime;
 		if(attacking && !movingIntoPosition && !aiming) PerformAttack();
+		Player[] players = GameObject.FindObjectsOfType(typeof(Player)) as Player[];
+		Debug.Log (players[0].resources[ResourceType.Money]+"   "+players[1].resources[ResourceType.Money]);
 	}
 	
 	protected virtual void OnGUI() {
@@ -107,6 +111,7 @@ public class WorldObject : MonoBehaviour {
 		//Debug.Log("make decision for " + ObjectId + ": " + objectName + ", controlled by " + (player == null ? "no one" : player.username));
 		Vector3 currentPosition = transform.position;
 		nearbyObjects = WorkManager.FindNearbyObjects(currentPosition, detectionRange);
+			
 		if(CanAttack()) {
 			List<WorldObject> enemyObjects = new List<WorldObject>();
 			foreach(WorldObject nearbyObject in nearbyObjects) {
@@ -152,6 +157,7 @@ public class WorldObject : MonoBehaviour {
 	
 	public virtual void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		//only handle input if currently selected
+		Debug.Log(hitObject.name);
 		if(currentlySelected && !WorkManager.ObjectIsGround(hitObject)) {
 			WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
 			//clicked on another selectable object
@@ -242,7 +248,16 @@ public class WorldObject : MonoBehaviour {
 	
 	public void TakeDamage(int damage) {
 		hitPoints -= damage;
-		if(hitPoints<=0) Destroy(gameObject);
+		Player[] players = GameObject.FindObjectsOfType(typeof(Player)) as Player[];
+		if(hitPoints<=0) 
+		{
+			if(this.IsOwnedBy(players[0]))
+				players[1].AddResource(ResourceType.Money,this.moneyOnDeath);
+			if(this.IsOwnedBy(players[1]))
+				players[0].AddResource(ResourceType.Money,this.moneyOnDeath);
+			Destroy(gameObject);
+			
+		}
 	}
 	
 	/*** Private worker methods ***/
@@ -267,10 +282,14 @@ public class WorldObject : MonoBehaviour {
 	private void BeginAttack(WorldObject target) {
 		if(audioElement != null) audioElement.Play(attackSound);
 		this.target = target;
-		if(TargetInRange()) {
-			attacking = true;
-			PerformAttack();
-		} else AdjustPosition();
+		//Worker temp = target.GetComponent<Worker>();
+		//if(isWorker)
+		{
+			if(TargetInRange()) {
+				attacking = true;
+				PerformAttack();
+			} else AdjustPosition();
+		}
 	}
 	
 	private void PerformAttack() {
@@ -304,7 +323,7 @@ public class WorldObject : MonoBehaviour {
 		Vector3 direction = targetLocation - transform.position;
 		float targetDistance = direction.magnitude;
 		float distanceToTravel = targetDistance - (0.9f * weaponRange);
-		return Vector3.Lerp(transform.position, targetLocation,  0.5f * distanceToTravel / targetDistance);
+		return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
 	}
 	
 	private void AdjustPosition() {
