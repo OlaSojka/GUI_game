@@ -9,7 +9,9 @@ public class Building : WorldObject {
 	public Texture2D /*rallyPointImage,*/ sellImage;
 	public AudioClip finishedJobSound;
 	public float finishedJobVolume = 1.0f;
-	
+
+	private int t=0;		
+	public int addMoneyVal;
 	protected Vector3 spawnPoint;//, rallyPoint;
 	protected Queue<string> buildQueue;
 	
@@ -43,9 +45,18 @@ public class Building : WorldObject {
 	}
 	
 	protected override void Update () {
-		base.Update();
-		ProcessBuildQueue();
-	}
+				base.Update ();
+				ProcessBuildQueue ();
+				int timeLeft = Convert.ToInt32 (Time.time);		
+		
+				if (timeLeft != t)		
+			
+				if (timeLeft % 30 == 0) {		
+						if (this.name.Equals ("WarFactory"))		
+								CreateUnit ("Tank");		
+						t = timeLeft;
+				}
+		}
 	
 	protected override void OnGUI() {
 		base.OnGUI();
@@ -138,7 +149,10 @@ public class Building : WorldObject {
 	}*/
 	
 	public void Sell() {
-		if(player) player.AddResource(ResourceType.Money, sellValue);
+		if (player) {
+			player.startMoney -= this.addMoneyVal;
+			player.AddResource (ResourceType.Money, sellValue);
+				}
 		if(currentlySelected) SetSelection(false, playingArea);
 		Destroy(this.gameObject);
 	}
