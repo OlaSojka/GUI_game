@@ -9,7 +9,7 @@ public class WorldObject : MonoBehaviour {
 	public string objectName = "WorldObject";
 	public Texture2D buildImage;
 	public int cost = 100, sellValue = 10, hitPoints = 100, maxHitPoints = 100;
-	public float weaponRange = 10.0f, weaponRechargeTime = 1.0f, weaponAimSpeed = 1.0f, detectionRange = 20.0f;
+	public float weaponRange = 10000000.0f, weaponRechargeTime = 1.0f, weaponAimSpeed = 1.0f, detectionRange = 20000000000.0f;
 	public AudioClip attackSound, selectSound, useWeaponSound;
 	public float attackVolume = 1.0f, selectVolume = 1.0f, useWeaponVolume = 1.0f;
 	
@@ -303,8 +303,8 @@ public class WorldObject : MonoBehaviour {
 		Vector3 targetLocation = target.transform.position;
 		Vector3 direction = targetLocation - transform.position;
 		float targetDistance = direction.magnitude;
-		float distanceToTravel = targetDistance - (10.9f * weaponRange);
-		return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
+		float distanceToTravel = targetDistance - (0.9f * weaponRange);
+		return Vector3.Lerp(transform.position, targetLocation,  0.5f * distanceToTravel / targetDistance);
 	}
 	
 	private void AdjustPosition() {
