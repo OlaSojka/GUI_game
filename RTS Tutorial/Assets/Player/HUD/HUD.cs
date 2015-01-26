@@ -81,8 +81,8 @@ public class HUD : MonoBehaviour {
 		//we only want to draw a GUI for human players
 		if(player.human) {
 			DrawPlayerDetails();
-			DrawOrdersBar();
 			DrawResourceBar();
+			DrawOrdersBar();
 			//call last to ensure that the custom mouse cursor is seen on top of everything
 //			DrawMouseCursor();
 		}
@@ -100,7 +100,7 @@ public class HUD : MonoBehaviour {
 	}
 	
 	public Rect GetPlayingArea() {
-		return new Rect(0, 0, Screen.width, Screen.height);
+		return new Rect(0, 0, Screen.width, Screen.height-BAR_HEIGHT);
 	}
 	
 	/*public void SetCursorState(CursorState newState) {
@@ -227,20 +227,14 @@ public class HUD : MonoBehaviour {
 
 	private void DrawResourceBar() {
 		GUI.skin = resourceSkin;
-		//GUI.BeginGroup(new Rect(0,0,Screen.width,RESOURCE_BAR_HEIGHT));
-		//GUI.Box(new Rect(0,0,Screen.width,RESOURCE_BAR_HEIGHT),"");
-
 		GUI.BeginGroup(new Rect(0,Screen.height - BAR_HEIGHT,Screen.width/2,BAR_HEIGHT));
 		GUI.Box(new Rect(0,0,Screen.width/2,BAR_HEIGHT),"");
 
 		int topPos = 4, iconLeft = 4, textLeft = 20;
 		DrawResourceIcon(ResourceType.Money, iconLeft, textLeft, topPos);
-		//	iconLeft += TEXT_WIDTH;
-		//		textLeft += TEXT_WIDTH;
-		//		DrawResourceIcon(ResourceType.Power, iconLeft, textLeft, topPos);
+
 		miniMapCamera = Camera.allCameras[1];
 		miniMapCamera.Render();
-		//GUI.DrawTexture(new Rect(0, 30, 200, 200), camTexture);
 		GUI.EndGroup();
 	}
 	
@@ -258,6 +252,7 @@ public class HUD : MonoBehaviour {
 		buttons.active.background = buttonClick;
 		GUI.skin.button = buttons;
 		int numActions = actions.Length;
+		Debug.Log (actions.Length);
 		//define the area to draw the actions inside
 		//GUI.BeginGroup(new Rect(BUILD_IMAGE_WIDTH,0,ORDERS_BAR_WIDTH,buildAreaHeight));
 		GUI.BeginGroup (new Rect (0, 3, Screen.width/2, BAR_HEIGHT));
