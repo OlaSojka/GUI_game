@@ -74,6 +74,7 @@
      <Compile Include="Assets\SelectionList\SelectionList.cs" />
      <Compile Include="Assets\VictoryConditions\Conquest.cs" />
      <Compile Include="Assets\VictoryConditions\VictoryCondition.cs" />
+     <Compile Include="Assets\WorldObject\Building\Barracks\Barracks.cs" />
      <Compile Include="Assets\WorldObject\Building\Building.cs" />
      <Compile Include="Assets\WorldObject\Building\Buildings.cs" />
      <Compile Include="Assets\WorldObject\Building\Refinery\Refinery.cs" />

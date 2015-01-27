@@ -3,72 +3,52 @@ guid: 4babee2a344d9c246bce247b4eb60463
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: ground_plane
-    100002: //RootNode
-    100004: GUN_base
-    100006: Horizontal_dial
-    100008: human_referance
-    100010: Light_cold_fill
-    100012: Light_warm_fill
-    100014: Mesh_008
-    100016: Plane_000
-    100018: Plane_001
-    100020: SC_ACU_left
-    100022: SC_ACU_Right
-    100024: SC_EXT_CEllarray
-    100026: SC_external_INTF
-    100028: SC_GUN_energy_line
-    100030: SC_TIBLIS_Pulse_Cannon
-    100032: Vertical_Dial
-    400000: ground_plane
-    400002: //RootNode
-    400004: GUN_base
-    400006: Horizontal_dial
-    400008: human_referance
-    400010: Light_cold_fill
-    400012: Light_warm_fill
-    400014: Mesh_008
-    400016: Plane_000
-    400018: Plane_001
-    400020: SC_ACU_left
-    400022: SC_ACU_Right
-    400024: SC_EXT_CEllarray
-    400026: SC_external_INTF
-    400028: SC_GUN_energy_line
-    400030: SC_TIBLIS_Pulse_Cannon
-    400032: Vertical_Dial
-    2300000: ground_plane
-    2300002: GUN_base
-    2300004: Horizontal_dial
-    2300006: human_referance
-    2300008: Light_cold_fill
-    2300010: Light_warm_fill
-    2300012: Mesh_008
-    2300014: Plane_000
-    2300016: Plane_001
-    2300018: SC_ACU_left
-    2300020: SC_ACU_Right
-    2300022: SC_EXT_CEllarray
-    2300024: SC_external_INTF
-    2300026: SC_GUN_energy_line
-    2300028: SC_TIBLIS_Pulse_Cannon
-    2300030: Vertical_Dial
-    3300000: ground_plane
-    3300002: GUN_base
-    3300004: Horizontal_dial
-    3300006: human_referance
-    3300008: Light_cold_fill
-    3300010: Light_warm_fill
-    3300012: Mesh_008
-    3300014: Plane_000
-    3300016: Plane_001
-    3300018: SC_ACU_left
-    3300020: SC_ACU_Right
-    3300022: SC_EXT_CEllarray
-    3300024: SC_external_INTF
-    3300026: SC_GUN_energy_line
-    3300028: SC_TIBLIS_Pulse_Cannon
-    3300030: Vertical_Dial
+    100000: //RootNode
+    100002: GUN_base
+    100004: Horizontal_dial
+    100006: Light_warm_fill
+    100008: Mesh_008
+    100010: SC_ACU_left
+    100012: SC_ACU_Right
+    100014: SC_EXT_CEllarray
+    100016: SC_external_INTF
+    100018: SC_GUN_energy_line
+    100020: SC_TIBLIS_Pulse_Cannon
+    100022: Vertical_Dial
+    400000: //RootNode
+    400002: GUN_base
+    400004: Horizontal_dial
+    400006: Light_warm_fill
+    400008: Mesh_008
+    400010: SC_ACU_left
+    400012: SC_ACU_Right
+    400014: SC_EXT_CEllarray
+    400016: SC_external_INTF
+    400018: SC_GUN_energy_line
+    400020: SC_TIBLIS_Pulse_Cannon
+    400022: Vertical_Dial
+    2300000: GUN_base
+    2300002: Horizontal_dial
+    2300004: Light_warm_fill
+    2300006: Mesh_008
+    2300008: SC_ACU_left
+    2300010: SC_ACU_Right
+    2300012: SC_EXT_CEllarray
+    2300014: SC_external_INTF
+    2300016: SC_GUN_energy_line
+    2300018: SC_TIBLIS_Pulse_Cannon
+    2300020: Vertical_Dial
+    3300000: GUN_base
+    3300002: Horizontal_dial
+    3300004: Light_warm_fill
+    3300006: Mesh_008
+    3300008: SC_ACU_left
+    3300010: SC_ACU_Right
+    3300012: SC_EXT_CEllarray
+    3300014: SC_external_INTF
+    3300016: SC_GUN_energy_line
+    3300018: SC_TIBLIS_Pulse_Cannon
+    3300020: Vertical_Dial
     4300000: GUN_base
     4300002: Horizontal_dial
     4300004: SC_external_INTF
@@ -78,12 +58,17 @@ ModelImporter:
     4300012: SC_TIBLIS_Pulse_Cannon
     4300014: SC_ACU_Right
     4300016: SC_ACU_left
-    4300020: ground_plane
-    4300022: human_referance
-    4300024: Light_cold_fill
-    4300026: Light_warm_fill
-    4300028: Plane_000
-    4300030: Plane_001
+    4300020: Light_warm_fill
+    6400000: GUN_base
+    6400002: Horizontal_dial
+    6400004: Mesh_008
+    6400006: SC_ACU_left
+    6400008: SC_ACU_Right
+    6400010: SC_EXT_CEllarray
+    6400012: SC_external_INTF
+    6400014: SC_GUN_energy_line
+    6400016: SC_TIBLIS_Pulse_Cannon
+    6400018: Vertical_Dial
     7400000: Default Take
     9500000: //RootNode
   materials:
@@ -107,7 +92,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0

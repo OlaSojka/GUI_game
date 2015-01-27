@@ -1,19 +1,11 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/WorldObject/WorldObject.cs">
+  <MonoDevelop.Ide.Workspace />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WorldObject\Building\WarFactory\WarFactory.cs">
     <Files>
-      <File FileName="Assets/RTS/ResourceManager.cs" Line="38" Column="42" />
-      <File FileName="Assets/RTS/PlayerManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/WorldObject/Unit/Tank/Tank.cs" Line="11" Column="3" />
-      <File FileName="Assets/WorldObject/Unit/Unit.cs" Line="113" Column="33" />
-      <File FileName="Assets/WorldObject/WorldObject.cs" Line="312" Column="13" />
-      <File FileName="Assets/Player/Player.cs" Line="46" Column="3" />
-      <File FileName="Assets/WorldObject/Unit/Tank/TankProjectile.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/GameObjectList.cs" Line="1" Column="1" />
-      <File FileName="Assets/RTS/WorkManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Resources/GameManager.cs" Line="1" Column="1" />
-      <File FileName="Assets/Menu/Scripts/MainMenu.cs" Line="1" Column="1" />
-      <File FileName="Assets/WorldObject/Projectile.cs" Line="26" Column="14" />
+      <File FileName="Assets\WorldObject\Worker\Worker.cs" Line="75" Column="32" />
+      <File FileName="Assets\WorldObject\Worker\WorkerUnit.cs" Line="139" Column="76" />
+      <File FileName="Assets\WorldObject\Building\Barracks\Barracks.cs" Line="8" Column="48" />
+      <File FileName="Assets\WorldObject\Building\WarFactory\WarFactory.cs" Line="8" Column="34" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
