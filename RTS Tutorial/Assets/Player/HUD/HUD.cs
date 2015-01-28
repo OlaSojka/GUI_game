@@ -30,7 +30,7 @@ public class HUD : MonoBehaviour {
 	private const int ICON_WIDTH = 32, ICON_HEIGHT = 32, TEXT_WIDTH = 128, TEXT_HEIGHT = 32;
 	private const int BUILD_IMAGE_WIDTH = 64, BUILD_IMAGE_HEIGHT = 64, BUILD_IMAGE_PADDING = 8;
 	
-	private const int BAR_HEIGHT = 150;
+	public const int BAR_HEIGHT = 150;
 	
 	Camera miniMapCamera;
 	Texture camTexture;
@@ -219,7 +219,7 @@ public class HUD : MonoBehaviour {
 		}
 		if(!selectionName.Equals("")) {
 			int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2;
-			int topPos = buildAreaHeight + BUTTON_SPACING;
+			int topPos = BAR_HEIGHT - SELECTION_NAME_HEIGHT - 10;
 			GUI.Label(new Rect(leftPos,topPos,ORDERS_BAR_WIDTH,SELECTION_NAME_HEIGHT), selectionName);
 		}
 		GUI.EndGroup();
@@ -252,7 +252,7 @@ public class HUD : MonoBehaviour {
 		buttons.active.background = buttonClick;
 		GUI.skin.button = buttons;
 		int numActions = actions.Length;
-		Debug.Log (actions.Length);
+		//Debug.Log (actions.Length);
 		//define the area to draw the actions inside
 		//GUI.BeginGroup(new Rect(BUILD_IMAGE_WIDTH,0,ORDERS_BAR_WIDTH,buildAreaHeight));
 		GUI.BeginGroup (new Rect (0, 3, Screen.width/2, BAR_HEIGHT));

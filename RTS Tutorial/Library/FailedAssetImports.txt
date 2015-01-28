@@ -1,0 +1,1 @@
+Assets/WorldObject/Unit/Goliath/Goliath.prefab

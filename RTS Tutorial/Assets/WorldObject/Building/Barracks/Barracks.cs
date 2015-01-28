@@ -5,7 +5,7 @@ public class Barracks : Building {
 	
 	protected override void Start () {
 		base.Start();
-		actions = new string[] { "Coś co robią baraki" };
+		actions = new string[] { "Soldier" };
 	}
 	
 	public override void PerformAction(string actionToPerform) {

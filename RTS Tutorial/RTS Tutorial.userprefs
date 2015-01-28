@@ -1,11 +1,20 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WorldObject\Building\WarFactory\WarFactory.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\WorldObject\Worker\Worker.cs">
     <Files>
-      <File FileName="Assets\WorldObject\Worker\Worker.cs" Line="75" Column="32" />
-      <File FileName="Assets\WorldObject\Worker\WorkerUnit.cs" Line="139" Column="76" />
-      <File FileName="Assets\WorldObject\Building\Barracks\Barracks.cs" Line="8" Column="48" />
-      <File FileName="Assets\WorldObject\Building\WarFactory\WarFactory.cs" Line="8" Column="34" />
+      <File FileName="Assets\WorldObject\Building\Barracks\Barracks.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\Worker\Worker.cs" Line="21" Column="86" />
+      <File FileName="Assets\WorldObject\Worker\WorkerUnit.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\Building\WarFactory\WarFactory.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\WorldObject.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\Player.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\UserInput.cs" Line="1" Column="1" />
+      <File FileName="Assets\RTS\WorkManager.cs" Line="1" Column="1" />
+      <File FileName="Assets\Player\HUD\HUD.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\Building\Building.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\Unit\Goliath\Goliath.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\Unit\Tank\Tank.cs" Line="1" Column="1" />
+      <File FileName="Assets\WorldObject\Building\ScienceFacility\ScienceFacility.cs" Line="8" Column="37" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

@@ -77,13 +77,16 @@
      <Compile Include="Assets\WorldObject\Building\Barracks\Barracks.cs" />
      <Compile Include="Assets\WorldObject\Building\Building.cs" />
      <Compile Include="Assets\WorldObject\Building\Buildings.cs" />
-     <Compile Include="Assets\WorldObject\Building\Refinery\Refinery.cs" />
+     <Compile Include="Assets\WorldObject\Building\ScienceFacility\ScienceFacility.cs" />
      <Compile Include="Assets\WorldObject\Building\Turret\Turret.cs" />
      <Compile Include="Assets\WorldObject\Building\Turret\TurretProjectile.cs" />
      <Compile Include="Assets\WorldObject\Building\WarFactory\WarFactory.cs" />
      <Compile Include="Assets\WorldObject\Building\Wonder\Wonder.cs" />
      <Compile Include="Assets\WorldObject\Projectile.cs" />
      <Compile Include="Assets\WorldObject\TeamColor.cs" />
+     <Compile Include="Assets\WorldObject\Unit\ArmouredTruck\ArmouredTruck.cs" />
+     <Compile Include="Assets\WorldObject\Unit\Goliath\Goliath.cs" />
+     <Compile Include="Assets\WorldObject\Unit\Soldier\Soldier.cs" />
      <Compile Include="Assets\WorldObject\Unit\Tank\Tank.cs" />
      <Compile Include="Assets\WorldObject\Unit\Tank\TankProjectile.cs" />
      <Compile Include="Assets\WorldObject\Unit\Unit.cs" />

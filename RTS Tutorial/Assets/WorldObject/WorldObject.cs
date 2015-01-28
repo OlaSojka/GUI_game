@@ -152,9 +152,9 @@ public class WorldObject : MonoBehaviour {
 	
 	public virtual void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		//only handle input if currently selected
-		Debug.Log(hitObject.name);
 		if(currentlySelected && !WorkManager.ObjectIsGround(hitObject)) {
 			WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
+			Debug.Log(worldObject.name);
 			//clicked on another selectable object
 			if(worldObject) {
 				//Resource resource = hitObject.transform.parent.GetComponent<Resource>();
