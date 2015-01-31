@@ -42,10 +42,10 @@ public class HUD : MonoBehaviour {
 		resourceValues = new Dictionary<ResourceType, int>();
 		//resourceLimits = new Dictionary<ResourceType, int>();
 		resourceImages = new Dictionary<ResourceType, Texture2D>();
-		for(int i=0; i<resources.Length; i++) {
-			switch(resources[i].name) {
+//		for(int i=0; i<resources.Length; i++) {
+			switch(resources[0].name) {
 				case "Money":
-					resourceImages.Add(ResourceType.Money, resources[i]);
+					resourceImages.Add(ResourceType.Money, resources[0]);
 					resourceValues.Add(ResourceType.Money, 0);
 					//resourceLimits.Add(ResourceType.Money, 0);
 					break;
@@ -56,7 +56,7 @@ public class HUD : MonoBehaviour {
 					break;*/
 				default: break;
 			}
-		}
+	//	}
 		/*Dictionary<ResourceType, Texture2D> resourceHealthBarTextures = new Dictionary<ResourceType, Texture2D>();
 		for(int i=0; i<resourceHealthBars.Length; i++) {
 			switch(resourceHealthBars[i].name) {
@@ -220,7 +220,7 @@ public class HUD : MonoBehaviour {
 		if(!selectionName.Equals("")) {
 			int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2;
 			int topPos = BAR_HEIGHT - SELECTION_NAME_HEIGHT - 10;
-			GUI.Label(new Rect(leftPos,topPos,ORDERS_BAR_WIDTH,SELECTION_NAME_HEIGHT), selectionName);
+			GUI.Label(new Rect(leftPos,topPos,ORDERS_BAR_WIDTH,SELECTION_NAME_HEIGHT), selectionName.ToUpper());
 		}
 		GUI.EndGroup();
 	}
@@ -260,8 +260,8 @@ public class HUD : MonoBehaviour {
 	//	if(numActions >= MaxNumRows(buildAreaHeight)) DrawSlider(buildAreaHeight, numActions / 2.0f);
 		//display possible actions as buttons and handle the button click for each
 		for(int i=0; i<numActions; i++) {
-			int column = i % 3;
-			int row = i / 3;
+			int column = i % 6;
+			int row = i / 6;
 			Rect pos = GetButtonPos(row, column);
 			Texture2D action = ResourceManager.GetBuildImage(actions[i]);
 			if(action) {
@@ -274,7 +274,10 @@ public class HUD : MonoBehaviour {
 				}
 			}
 			string text = actions[i];
-			GUI.Label(new Rect(pos.x-2, pos.y+45, pos.width+5, TEXT_HEIGHT), text);
+			if(!actions[i].Equals("ScienceFacility"))
+				GUI.Label(new Rect(pos.x-5, pos.y+50, pos.width+10, TEXT_HEIGHT), text);
+			else
+			   	GUI.Label(new Rect(pos.x-5, pos.y+50, pos.width+35, TEXT_HEIGHT), text);
 		}
 		GUI.EndGroup();
 	}
@@ -288,7 +291,7 @@ public class HUD : MonoBehaviour {
 	}
 	
 	private Rect GetButtonPos(int row, int column) {
-		int left = SCROLL_BAR_WIDTH + column * BUILD_IMAGE_WIDTH;
+		float left = 10 + column * (BUILD_IMAGE_WIDTH*1.5f);
 		float top = row * BUILD_IMAGE_HEIGHT - sliderValue * BUILD_IMAGE_HEIGHT;
 		return new Rect(left,top,BUILD_IMAGE_WIDTH,BUILD_IMAGE_HEIGHT);
 	}

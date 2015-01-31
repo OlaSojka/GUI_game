@@ -82,10 +82,13 @@
      <Compile Include="Assets\WorldObject\Building\Turret\TurretProjectile.cs" />
      <Compile Include="Assets\WorldObject\Building\WarFactory\WarFactory.cs" />
      <Compile Include="Assets\WorldObject\Building\Wonder\Wonder.cs" />
+     <Compile Include="Assets\WorldObject\Building\Workshop\Workshop.cs" />
      <Compile Include="Assets\WorldObject\Projectile.cs" />
      <Compile Include="Assets\WorldObject\TeamColor.cs" />
      <Compile Include="Assets\WorldObject\Unit\ArmouredTruck\ArmouredTruck.cs" />
+     <Compile Include="Assets\WorldObject\Unit\ArmouredTruck\TruckProjectile.cs" />
      <Compile Include="Assets\WorldObject\Unit\Goliath\Goliath.cs" />
+     <Compile Include="Assets\WorldObject\Unit\Goliath\GoliathProjectile.cs" />
      <Compile Include="Assets\WorldObject\Unit\Soldier\Soldier.cs" />
      <Compile Include="Assets\WorldObject\Unit\Tank\Tank.cs" />
      <Compile Include="Assets\WorldObject\Unit\Tank\TankProjectile.cs" />
