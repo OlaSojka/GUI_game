@@ -156,6 +156,8 @@ public class WorldObject : MonoBehaviour {
 		if(currentlySelected && !WorkManager.ObjectIsGround(hitObject)) {
 			WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
 			//clicked on another selectable object
+			//if(hitObject.name.Equals("default_MeshPart0") || hitObject.name.Equals("default_MeshPart1") || hitObject.name.Equals("default_MeshPart2"))
+			//	worldObject = hitObject.transform.parent.GetComponent<Goliath>();
 			if(worldObject) {
 				//Resource resource = hitObject.transform.parent.GetComponent<Resource>();
 				//if(resource && resource.isEmpty()) return;

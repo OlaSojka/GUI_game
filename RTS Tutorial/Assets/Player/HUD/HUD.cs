@@ -30,7 +30,7 @@ public class HUD : MonoBehaviour {
 	private const int ICON_WIDTH = 32, ICON_HEIGHT = 32, TEXT_WIDTH = 128, TEXT_HEIGHT = 32;
 	private const int BUILD_IMAGE_WIDTH = 64, BUILD_IMAGE_HEIGHT = 64, BUILD_IMAGE_PADDING = 8;
 	
-	private const int BAR_HEIGHT = 150;
+	public const int BAR_HEIGHT = 150;
 	
 	Camera miniMapCamera;
 	Texture camTexture;
@@ -42,10 +42,10 @@ public class HUD : MonoBehaviour {
 		resourceValues = new Dictionary<ResourceType, int>();
 		//resourceLimits = new Dictionary<ResourceType, int>();
 		resourceImages = new Dictionary<ResourceType, Texture2D>();
-		for(int i=0; i<resources.Length; i++) {
-			switch(resources[i].name) {
+//		for(int i=0; i<resources.Length; i++) {
+			switch(resources[0].name) {
 				case "Money":
-					resourceImages.Add(ResourceType.Money, resources[i]);
+					resourceImages.Add(ResourceType.Money, resources[0]);
 					resourceValues.Add(ResourceType.Money, 0);
 					//resourceLimits.Add(ResourceType.Money, 0);
 					break;
@@ -56,7 +56,7 @@ public class HUD : MonoBehaviour {
 					break;*/
 				default: break;
 			}
-		}
+	//	}
 		/*Dictionary<ResourceType, Texture2D> resourceHealthBarTextures = new Dictionary<ResourceType, Texture2D>();
 		for(int i=0; i<resourceHealthBars.Length; i++) {
 			switch(resourceHealthBars[i].name) {
@@ -81,8 +81,8 @@ public class HUD : MonoBehaviour {
 		//we only want to draw a GUI for human players
 		if(player.human) {
 			DrawPlayerDetails();
-			DrawOrdersBar();
 			DrawResourceBar();
+			DrawOrdersBar();
 			//call last to ensure that the custom mouse cursor is seen on top of everything
 //			DrawMouseCursor();
 		}
@@ -100,7 +100,7 @@ public class HUD : MonoBehaviour {
 	}
 	
 	public Rect GetPlayingArea() {
-		return new Rect(0, 0, Screen.width, Screen.height);
+		return new Rect(0, 0, Screen.width, Screen.height-BAR_HEIGHT);
 	}
 	
 	/*public void SetCursorState(CursorState newState) {
@@ -219,28 +219,22 @@ public class HUD : MonoBehaviour {
 		}
 		if(!selectionName.Equals("")) {
 			int leftPos = BUILD_IMAGE_WIDTH + SCROLL_BAR_WIDTH / 2;
-			int topPos = buildAreaHeight + BUTTON_SPACING;
-			GUI.Label(new Rect(leftPos,topPos,ORDERS_BAR_WIDTH,SELECTION_NAME_HEIGHT), selectionName);
+			int topPos = BAR_HEIGHT - SELECTION_NAME_HEIGHT - 10;
+			GUI.Label(new Rect(leftPos,topPos,ORDERS_BAR_WIDTH,SELECTION_NAME_HEIGHT), selectionName.ToUpper());
 		}
 		GUI.EndGroup();
 	}
 
 	private void DrawResourceBar() {
 		GUI.skin = resourceSkin;
-		//GUI.BeginGroup(new Rect(0,0,Screen.width,RESOURCE_BAR_HEIGHT));
-		//GUI.Box(new Rect(0,0,Screen.width,RESOURCE_BAR_HEIGHT),"");
-
 		GUI.BeginGroup(new Rect(0,Screen.height - BAR_HEIGHT,Screen.width/2,BAR_HEIGHT));
 		GUI.Box(new Rect(0,0,Screen.width/2,BAR_HEIGHT),"");
 
 		int topPos = 4, iconLeft = 4, textLeft = 20;
 		DrawResourceIcon(ResourceType.Money, iconLeft, textLeft, topPos);
-		//	iconLeft += TEXT_WIDTH;
-		//		textLeft += TEXT_WIDTH;
-		//		DrawResourceIcon(ResourceType.Power, iconLeft, textLeft, topPos);
+
 		miniMapCamera = Camera.allCameras[1];
 		miniMapCamera.Render();
-		//GUI.DrawTexture(new Rect(0, 30, 200, 200), camTexture);
 		GUI.EndGroup();
 	}
 	
@@ -258,6 +252,7 @@ public class HUD : MonoBehaviour {
 		buttons.active.background = buttonClick;
 		GUI.skin.button = buttons;
 		int numActions = actions.Length;
+		//Debug.Log (actions.Length);
 		//define the area to draw the actions inside
 		//GUI.BeginGroup(new Rect(BUILD_IMAGE_WIDTH,0,ORDERS_BAR_WIDTH,buildAreaHeight));
 		GUI.BeginGroup (new Rect (0, 3, Screen.width/2, BAR_HEIGHT));
@@ -265,8 +260,8 @@ public class HUD : MonoBehaviour {
 	//	if(numActions >= MaxNumRows(buildAreaHeight)) DrawSlider(buildAreaHeight, numActions / 2.0f);
 		//display possible actions as buttons and handle the button click for each
 		for(int i=0; i<numActions; i++) {
-			int column = i % 3;
-			int row = i / 3;
+			int column = i % 6;
+			int row = i / 6;
 			Rect pos = GetButtonPos(row, column);
 			Texture2D action = ResourceManager.GetBuildImage(actions[i]);
 			if(action) {
@@ -279,7 +274,10 @@ public class HUD : MonoBehaviour {
 				}
 			}
 			string text = actions[i];
-			GUI.Label(new Rect(pos.x-2, pos.y+45, pos.width+5, TEXT_HEIGHT), text);
+			if(!actions[i].Equals("ScienceFacility"))
+				GUI.Label(new Rect(pos.x-5, pos.y+50, pos.width+10, TEXT_HEIGHT), text);
+			else
+			   	GUI.Label(new Rect(pos.x-5, pos.y+50, pos.width+35, TEXT_HEIGHT), text);
 		}
 		GUI.EndGroup();
 	}
@@ -293,7 +291,7 @@ public class HUD : MonoBehaviour {
 	}
 	
 	private Rect GetButtonPos(int row, int column) {
-		int left = SCROLL_BAR_WIDTH + column * BUILD_IMAGE_WIDTH;
+		float left = 10 + column * (BUILD_IMAGE_WIDTH*1.5f);
 		float top = row * BUILD_IMAGE_HEIGHT - sliderValue * BUILD_IMAGE_HEIGHT;
 		return new Rect(left,top,BUILD_IMAGE_WIDTH,BUILD_IMAGE_HEIGHT);
 	}
