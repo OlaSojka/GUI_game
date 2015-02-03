@@ -2,6 +2,7 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using RTS;
+using System;
 
 public class Building : WorldObject {
 	
