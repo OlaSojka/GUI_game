@@ -8,6 +8,7 @@ public class PauseMenu : Menu {
 	protected override void Start () {
 		base.Start();
 		player = transform.root.GetComponent<Player>();
+		previousMenu = "pause";
 	}
 	
 	void Update () {
@@ -37,7 +38,7 @@ public class PauseMenu : Menu {
 		Time.timeScale = 1.0f;
 		GetComponent<PauseMenu>().enabled = false;
 		if(player) player.GetComponent<UserInput>().enabled = true;
-		Screen.showCursor = false;
+		//Screen.showCursor = false;
 		ResourceManager.MenuOpen = false;
 	}
 	
@@ -53,7 +54,7 @@ public class PauseMenu : Menu {
 	private void ReturnToMainMenu() {
 		ResourceManager.LevelName = "";
 		Application.LoadLevel("MainMenu");
-		Screen.showCursor = true;
+		//Screen.showCursor = true;
 	}
 	
 }

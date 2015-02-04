@@ -60,22 +60,22 @@ public class Unit : WorldObject {
 		//specific initialization for a unit can be specified here
 	}
 	
-	public override void SetHoverState(GameObject hoverObject) {
+/*	public override void SetHoverState(GameObject hoverObject) {
 		base.SetHoverState(hoverObject);
 		//only handle input if owned by a human player and currently selected
 		if(player && player.human && currentlySelected) {
-			bool moveHover = false;
+//			bool moveHover = false;
 			if(WorkManager.ObjectIsGround(hoverObject)) {
-				moveHover = true;
+			//	moveHover = true;
 			} /*else {
 				//Resource resource = hoverObject.transform.parent.GetComponent<Resource>();
 			if(resource && resource.isEmpty()) moveHover = true;
-			}*/
+			}
 //			if(moveHover) player.hud.SetCursorState(CursorState.Move);
 		}
-	}
+	}*/
 	
-	public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
+	/*public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		base.MouseClick(hitObject, hitPoint, controller);
 		//only handle input if owned by a human player and currently selected
 		/*if(player && player.human && currentlySelected) {
@@ -92,8 +92,8 @@ public class Unit : WorldObject {
 				Vector3 destination = new Vector3(x, y, z);
 				StartMove(destination);
 			}
-		}*/
-	}
+		}/
+	}*/
 	
 	public virtual void StartMove(Vector3 destination) {
 		if(audioElement != null) audioElement.Play (moveSound);

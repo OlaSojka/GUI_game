@@ -17,7 +17,15 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-																																																																																																																																														GlobalSection(MonoDevelopProperties) = preSolution
+<<<<<<< HEAD
+<<<<<<< HEAD
+																																																																																																																																																		GlobalSection(MonoDevelopProperties) = preSolution
+=======
+																																																																																																																																																																											GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> ola
+=======
+																																																																																																																																																																																								GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> ola
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0
 		$0.TextStylePolicy = $1

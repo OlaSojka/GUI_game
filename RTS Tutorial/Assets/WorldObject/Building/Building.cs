@@ -2,14 +2,17 @@ using UnityEngine;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using RTS;
+using System;
 
 public class Building : WorldObject {
 	
 	public float maxBuildProgress = 10.0f;
-	public Texture2D rallyPointImage, sellImage;
+	public Texture2D /*rallyPointImage,*/ sellImage;
 	public AudioClip finishedJobSound;
 	public float finishedJobVolume = 1.0f;
-	
+
+	private int t=0;		
+	public int addMoneyVal;
 	protected Vector3 spawnPoint;//, rallyPoint;
 	protected Queue<string> buildQueue;
 	
@@ -43,9 +46,18 @@ public class Building : WorldObject {
 	}
 	
 	protected override void Update () {
-		base.Update();
-		ProcessBuildQueue();
-	}
+				base.Update ();
+				ProcessBuildQueue ();
+				int timeLeft = Convert.ToInt32 (Time.time);		
+		
+				if (timeLeft != t)		
+			
+				if (timeLeft % 30 == 0) {		
+						if (this.name.Equals ("WarFactory"))		
+								CreateUnit ("Tank");		
+						t = timeLeft;
+				}
+		}
 	
 	protected override void OnGUI() {
 		base.OnGUI();
@@ -87,7 +99,7 @@ public class Building : WorldObject {
 		return currentBuildProgress / maxBuildProgress;
 	}
 	
-	public override void SetSelection(bool selected, Rect playingArea) {
+	/*public override void SetSelection(bool selected, Rect playingArea) {
 		base.SetSelection(selected, playingArea);
 		if(player) {
 			//RallyPoint flag = player.GetComponentInChildren<RallyPoint>();
@@ -101,21 +113,21 @@ public class Building : WorldObject {
 				//if(flag && player.human) flag.Disable();
 			//}
 		}
-	}
-	
-	/*public bool hasSpawnPoint() {
-		return spawnPoint != ResourceManager.InvalidPosition && rallyPoint != ResourceManager.InvalidPosition;
 	}*/
 	
-	public override void SetHoverState(GameObject hoverObject) {
+	public bool hasSpawnPoint() {
+		return spawnPoint != ResourceManager.InvalidPosition; //&& rallyPoint != ResourceManager.InvalidPosition;
+	}
+	
+	/*public override void SetHoverState(GameObject hoverObject) {
 		base.SetHoverState(hoverObject);
 		//only handle input if owned by a human player and currently selected
 		/*if(player && player.human && currentlySelected) {
 			if(WorkManager.ObjectIsGround(hoverObject)) {
 			//	if(player.hud.GetPreviousCursorState() == CursorState.RallyPoint) player.hud.SetCursorState(CursorState.RallyPoint);
 			}
-		}*/
-	}
+		}/
+	}*/
 	
 	/*public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		base.MouseClick(hitObject, hitPoint, controller);
@@ -138,7 +150,10 @@ public class Building : WorldObject {
 	}*/
 	
 	public void Sell() {
-		if(player) player.AddResource(ResourceType.Money, sellValue);
+		if (player) {
+			player.startMoney -= this.addMoneyVal;
+			player.AddResource (ResourceType.Money, sellValue);
+				}
 		if(currentlySelected) SetSelection(false, playingArea);
 		Destroy(this.gameObject);
 	}

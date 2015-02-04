@@ -31,7 +31,7 @@ public class ResultsScreen : MonoBehaviour {
 		float buttonWidth = ResourceManager.ButtonWidth;
 		float leftPos = padding;
 		float topPos = padding;
-		GUI.Box(new Rect(0, 0, Screen.width, Screen.height), "");
+		GUI.Box(new Rect(0, 10, Screen.width, Screen.height), "");
 		string message = "Game Over";
 		if(winner) message = "Congratulations " + winner.username + "! You have won by " + metVictoryCondition.GetDescription();
 		GUI.Label(new Rect(leftPos, topPos, Screen.width - 2 * padding, itemHeight), message);
@@ -48,7 +48,7 @@ public class ResultsScreen : MonoBehaviour {
 		if(GUI.Button(new Rect(leftPos, topPos, buttonWidth, itemHeight), "Main Menu")) {
 			ResourceManager.LevelName = "";
 			Application.LoadLevel("MainMenu");
-			Screen.showCursor = true;
+			//Screen.showCursor = true;
 		}
 		
 		GUI.EndGroup();

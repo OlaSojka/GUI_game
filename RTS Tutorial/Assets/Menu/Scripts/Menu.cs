@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour {
 	public Texture2D header;
 	public AudioClip clickSound;
 	public float clickVolume = 1.0f;
+	protected string previousMenu = "";
 	
 	protected string[] buttons;
 	

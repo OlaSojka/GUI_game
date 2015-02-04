@@ -104,14 +104,11 @@ public class WorldObject : MonoBehaviour {
 	
 	protected virtual void DecideWhatToDo() {
 		//determine what should be done by the world object at the current point in time
-		//Debug.Log("make decision for " + ObjectId + ": " + objectName + ", controlled by " + (player == null ? "no one" : player.username));
 		Vector3 currentPosition = transform.position;
 		nearbyObjects = WorkManager.FindNearbyObjects(currentPosition, detectionRange);
 		if(CanAttack()) {
 			List<WorldObject> enemyObjects = new List<WorldObject>();
 			foreach(WorldObject nearbyObject in nearbyObjects) {
-				//Resource resource = nearbyObject.GetComponent<Resource>();
-				//if(resource) continue;
 				if(nearbyObject.GetPlayer() != player) enemyObjects.Add(nearbyObject);
 			}
 			WorldObject closestObject = WorkManager.FindNearestWorldObjectInListToPosition(enemyObjects, currentPosition);
@@ -154,39 +151,23 @@ public class WorldObject : MonoBehaviour {
 		//only handle input if currently selected
 		if(currentlySelected && !WorkManager.ObjectIsGround(hitObject)) {
 			WorldObject worldObject = hitObject.transform.parent.GetComponent<WorldObject>();
-			//clicked on another selectable object
 			if(worldObject) {
-				//Resource resource = hitObject.transform.parent.GetComponent<Resource>();
-				//if(resource && resource.isEmpty()) return;
-				//Player owner = hitObject.transform.root.GetComponent<Player>();
-				//if(owner) { //the object is controlled by a player
-					/*if(player && player.human) { //this object is controlled by a human player
-						//start attack if object is not owned by the same player and this object can attack, else select
-						//if(player.username != owner.username && CanAttack()) BeginAttack(worldObject);
-						//else ChangeSelection(worldObject, controller);
-					} else  ChangeSelection(worldObject, controller);
-				} else */ChangeSelection(worldObject, controller);
+				ChangeSelection(worldObject, controller);
 			}
 		}
 	}
 	
-	public virtual void SetHoverState(GameObject hoverObject) {
+/*	public virtual void SetHoverState(GameObject hoverObject) {
 		//only handle input if owned by a human player and currently selected
 		if(player && player.human && currentlySelected) {
 			//something other than the ground is being hovered over
 			if(!WorkManager.ObjectIsGround(hoverObject)) {
-				Player owner = hoverObject.transform.root.GetComponent<Player>();
-				Unit unit = hoverObject.transform.parent.GetComponent<Unit>();
-				Building building = hoverObject.transform.parent.GetComponent<Building>();
-				/*if(owner) { //the object is owned by a player
-					if(owner.username == player.username) player.hud.SetCursorState(CursorState.Select);
-					else if(CanAttack()) player.hud.SetCursorState(CursorState.Attack);
-					else player.hud.SetCursorState(CursorState.Select);
-				} else if(unit || building && CanAttack()) player.hud.SetCursorState(CursorState.Attack);
-				else player.hud.SetCursorState(CursorState.Select);*/
+//				Player owner = hoverObject.transform.root.GetComponent<Player>();
+//				Unit unit = hoverObject.transform.parent.GetComponent<Unit>();
+//				Building building = hoverObject.transform.parent.GetComponent<Building>();
 			}
 		}
-	}
+	}*/
 	
 	public void CalculateBounds() {
 		selectionBounds = new Bounds(transform.position, Vector3.zero);
@@ -267,10 +248,14 @@ public class WorldObject : MonoBehaviour {
 	private void BeginAttack(WorldObject target) {
 		if(audioElement != null) audioElement.Play(attackSound);
 		this.target = target;
-		if(TargetInRange()) {
-			attacking = true;
-			PerformAttack();
-		} else AdjustPosition();
+		Worker temp = target.GetComponent<Worker>();
+		if(!temp)
+		{
+			if(TargetInRange()) {
+				attacking = true;
+				PerformAttack();
+			} else AdjustPosition();
+		}
 	}
 	
 	private void PerformAttack() {
@@ -303,7 +288,7 @@ public class WorldObject : MonoBehaviour {
 		Vector3 targetLocation = target.transform.position;
 		Vector3 direction = targetLocation - transform.position;
 		float targetDistance = direction.magnitude;
-		float distanceToTravel = targetDistance - (10.9f * weaponRange);
+		float distanceToTravel = targetDistance - (0.9f * weaponRange);
 		return Vector3.Lerp(transform.position, targetLocation, distanceToTravel / targetDistance);
 	}
 	

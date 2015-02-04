@@ -110,7 +110,7 @@ namespace RTS {
 			writer.WriteEndObject();
 		}
 		
-		public static void SavePlayerResources(JsonWriter writer, Dictionary<ResourceType, int> resources, Dictionary<ResourceType, int> resourceLimits) {
+		public static void SavePlayerResources(JsonWriter writer, Dictionary<ResourceType, int> resources/*, Dictionary<ResourceType, int> resourceLimits*/) {
 			if(writer == null) return;
 			
 			writer.WritePropertyName("Resources");
@@ -120,11 +120,11 @@ namespace RTS {
 				WriteInt(writer, pair.Key.ToString(), pair.Value);
 				writer.WriteEndObject();
 			}
-			foreach(KeyValuePair<ResourceType, int> pair in resourceLimits) {
+			/*foreach(KeyValuePair<ResourceType, int> pair in resourceLimits) {
 				writer.WriteStartObject();
 				WriteInt(writer, pair.Key.ToString() + "_Limit", pair.Value);
 				writer.WriteEndObject();
-			}
+			}*/
 			writer.WriteEndArray();
 		}
 		

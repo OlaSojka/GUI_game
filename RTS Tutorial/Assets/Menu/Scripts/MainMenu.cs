@@ -5,7 +5,7 @@ using RTS;
 public class MainMenu : Menu {
 	
 	void OnLevelWasLoaded() {
-		Screen.showCursor = true;
+		//Screen.showCursor = true;
 		if(PlayerManager.GetPlayerName() == "") {
 			//no player yet selected so enable SetPlayerMenu
 			GetComponent<MainMenu>().enabled = false;
@@ -15,6 +15,10 @@ public class MainMenu : Menu {
 			GetComponent<MainMenu>().enabled = true;
 			GetComponent<SelectPlayerMenu>().enabled = false;
 		}
+	}
+	
+	protected override void Start () {
+		base.Start();
 	}
 	
 	protected override void SetButtons () {
@@ -31,7 +35,7 @@ public class MainMenu : Menu {
 			default: break;
 		}
 	}
-	
+
 	protected override void HideCurrentMenu () {
 		GetComponent<MainMenu>().enabled = false;
 	}

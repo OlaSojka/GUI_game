@@ -14,47 +14,46 @@ public class Player : MonoBehaviour {
 	public Material notAllowedMaterial, allowedMaterial;
 	public Color teamColor;
 	
-	private Dictionary<ResourceType,int> resources, resourceLimits;
+	private Dictionary<ResourceType,int> resources;//, resourceLimits;
 	private Building tempBuilding;
-	private Unit tempCreator;
+	private WorkerUnit tempCreator;
 	private bool findingPlacement = false;
 	protected string[] actions = {};
 
 	private int t=0;
 	public void AddResourcesAuto() {
 		int timeLeft = Convert.ToInt32(Time.time);
-		//Debug.Log (timeLeft);
 		if(timeLeft!=t)
 			if(timeLeft%5==0)
-		{
-			AddResource(ResourceType.Money,ResourceManager.basicMoney);
-			t = timeLeft;
-		}
+			{
+				AddResource(ResourceType.Money,ResourceManager.basicMoney);
+				t = timeLeft;
+			}
 	}
 
 	/*** Game Engine Methods ***/
 	
 	void Awake() {
 		resources = InitResourceList();
-		resourceLimits = InitResourceList();
+		//resourceLimits = InitResourceList();
 	}
 	
 	void Start () {
 		hud = GetComponentInChildren<HUD>();
-		AddStartResourceLimits();
+		//AddStartResourceLimits();
 		AddStartResources();
 	}
 	
 	void Update () {
 		if(human) {
-			hud.SetResourceValues(resources, resourceLimits);
+			hud.SetResourceValues(resources/*, resourceLimits*/);
 			if(findingPlacement) {
 				tempBuilding.CalculateBounds();
 				if(CanPlaceBuilding()) tempBuilding.SetTransparentMaterial(allowedMaterial, false);
 				else tempBuilding.SetTransparentMaterial(notAllowedMaterial, false);
 			}
 		}
-		AddResourcesAuto ();
+		AddResourcesAuto();
 	}
 	
 	/*** Private Worker Methods ***/
@@ -66,10 +65,10 @@ public class Player : MonoBehaviour {
 		return list;
 	}
 	
-	private void AddStartResourceLimits() {
+	/*private void AddStartResourceLimits() {
 		IncrementResourceLimit(ResourceType.Money, startMoneyLimit);
 		//IncrementResourceLimit(ResourceType.Power, startPowerLimit);
-	}
+	}*/
 	
 	private void AddStartResources() {
 		AddResource(ResourceType.Money, startMoney);
@@ -90,9 +89,9 @@ public class Player : MonoBehaviour {
 		resources[type] += amount;
 	}
 	
-	public void IncrementResourceLimit(ResourceType type, int amount) {
+/*	public void IncrementResourceLimit(ResourceType type, int amount) {
 		resourceLimits[type] += amount;
-	}
+	}*/
 	
 	public void AddUnit(string unitName, Vector3 spawnPoint, /*Vector3 rallyPoint,*/ Quaternion rotation, Building creator) {
 		Units units = GetComponentInChildren<Units>();
@@ -106,7 +105,7 @@ public class Player : MonoBehaviour {
 		} else Destroy(newUnit);
 	}
 	
-	public void CreateBuilding(string buildingName, Vector3 buildPoint, Unit creator, Rect playingArea) {
+	public void CreateBuilding(string buildingName, Vector3 buildPoint, WorkerUnit creator, Rect playingArea) {
 		GameObject newBuilding = (GameObject)Instantiate(ResourceManager.GetBuilding(buildingName), buildPoint, new Quaternion());
 		tempBuilding = newBuilding.GetComponent<Building>();
 		if (tempBuilding) {
@@ -161,6 +160,8 @@ public class Player : MonoBehaviour {
 				if(worldObject && placeBounds.Intersects(worldObject.GetSelectionBounds())) canPlace = false;
 			}
 		}
+		
+		
 		return canPlace;
 	}
 	
@@ -186,7 +187,7 @@ public class Player : MonoBehaviour {
 		SaveManager.WriteString(writer, "Username", username);
 		SaveManager.WriteBoolean(writer, "Human", human);
 		SaveManager.WriteColor(writer, "TeamColor", teamColor);
-		SaveManager.SavePlayerResources(writer, resources, resourceLimits);
+		SaveManager.SavePlayerResources(writer, resources/*, resourceLimits*/);
 		SaveManager.SavePlayerBuildings(writer, GetComponentsInChildren<Building>());
 		SaveManager.SavePlayerUnits(writer, GetComponentsInChildren<Unit>());
 	}

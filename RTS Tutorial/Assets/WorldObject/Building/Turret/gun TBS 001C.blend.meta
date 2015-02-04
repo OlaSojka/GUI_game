@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 4babee2a344d9c246bce247b4eb60463
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: GUN_base
+    100004: Horizontal_dial
+    100006: Light_warm_fill
+    100008: Mesh_008
+    100010: SC_ACU_left
+    100012: SC_ACU_Right
+    100014: SC_EXT_CEllarray
+    100016: SC_external_INTF
+    100018: SC_GUN_energy_line
+    100020: SC_TIBLIS_Pulse_Cannon
+    100022: Vertical_Dial
+    400000: //RootNode
+    400002: GUN_base
+    400004: Horizontal_dial
+    400006: Light_warm_fill
+    400008: Mesh_008
+    400010: SC_ACU_left
+    400012: SC_ACU_Right
+    400014: SC_EXT_CEllarray
+    400016: SC_external_INTF
+    400018: SC_GUN_energy_line
+    400020: SC_TIBLIS_Pulse_Cannon
+    400022: Vertical_Dial
+    2300000: GUN_base
+    2300002: Horizontal_dial
+    2300004: Light_warm_fill
+    2300006: Mesh_008
+    2300008: SC_ACU_left
+    2300010: SC_ACU_Right
+    2300012: SC_EXT_CEllarray
+    2300014: SC_external_INTF
+    2300016: SC_GUN_energy_line
+    2300018: SC_TIBLIS_Pulse_Cannon
+    2300020: Vertical_Dial
+    3300000: GUN_base
+    3300002: Horizontal_dial
+    3300004: Light_warm_fill
+    3300006: Mesh_008
+    3300008: SC_ACU_left
+    3300010: SC_ACU_Right
+    3300012: SC_EXT_CEllarray
+    3300014: SC_external_INTF
+    3300016: SC_GUN_energy_line
+    3300018: SC_TIBLIS_Pulse_Cannon
+    3300020: Vertical_Dial
+    4300000: GUN_base
+    4300002: Horizontal_dial
+    4300004: SC_external_INTF
+    4300006: SC_EXT_CEllarray
+    4300008: Vertical_Dial
+    4300010: SC_GUN_energy_line
+    4300012: SC_TIBLIS_Pulse_Cannon
+    4300014: SC_ACU_Right
+    4300016: SC_ACU_left
+    4300020: Light_warm_fill
+    6400000: GUN_base
+    6400002: Horizontal_dial
+    6400004: Mesh_008
+    6400006: SC_ACU_left
+    6400008: SC_ACU_Right
+    6400010: SC_EXT_CEllarray
+    6400012: SC_external_INTF
+    6400014: SC_GUN_energy_line
+    6400016: SC_TIBLIS_Pulse_Cannon
+    6400018: Vertical_Dial
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
