@@ -8,6 +8,7 @@ public class PauseMenu : Menu {
 	protected override void Start () {
 		base.Start();
 		player = transform.root.GetComponent<Player>();
+		previousMenu = "pause";
 	}
 	
 	void Update () {
@@ -15,7 +16,7 @@ public class PauseMenu : Menu {
 	}
 	
 	protected override void SetButtons () {
-		buttons = new string[] {"Resume", "Save Game", "Load Game", "Help", "Exit Game"};
+		buttons = new string[] {"Resume", "Save Game", "Load Game", "Exit Game"};
 	}
 	
 	protected override void HandleButton (string text) {
@@ -25,7 +26,6 @@ public class PauseMenu : Menu {
 			case "Save Game": SaveGame(); break;
 			case "Load Game": LoadGame(); break;
 			case "Exit Game": ReturnToMainMenu(); break;
-			case "Help": Help(); break;
 			default: break;
 		}
 	}

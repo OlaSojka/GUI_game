@@ -18,9 +18,13 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 <<<<<<< HEAD
+<<<<<<< HEAD
 																																																																																																																																																		GlobalSection(MonoDevelopProperties) = preSolution
 =======
 																																																																																																																																																																											GlobalSection(MonoDevelopProperties) = preSolution
+>>>>>>> ola
+=======
+																																																																																																																																																																																								GlobalSection(MonoDevelopProperties) = preSolution
 >>>>>>> ola
 		StartupItem = Assembly-CSharp.csproj
 		Policies = $0

@@ -60,7 +60,7 @@ public class WorkerUnit : WorldObject {
 		//specific initialization for a unit can be specified here
 	}
 	
-	public override void SetHoverState(GameObject hoverObject) {
+/*	public override void SetHoverState(GameObject hoverObject) {
 		base.SetHoverState(hoverObject);
 		//only handle input if owned by a human player and currently selected
 		if(player && player.human && currentlySelected) {
@@ -69,7 +69,7 @@ public class WorkerUnit : WorldObject {
 				moveHover = true;
 			}
 		}
-	}
+	}*/
 	
 	public override void MouseClick(GameObject hitObject, Vector3 hitPoint, Player controller) {
 		base.MouseClick(hitObject, hitPoint, controller);
