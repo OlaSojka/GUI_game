@@ -17,8 +17,12 @@ public class MainMenu : Menu {
 		}
 	}
 	
+	protected override void Start () {
+		base.Start();
+	}
+	
 	protected override void SetButtons () {
-		buttons = new string[] {"New Game", "Load Game", "Change Player", "Help", "About", "Quit Game"};
+		buttons = new string[] {"New Game", "Load Game", "Change Player", "Quit Game"};
 	}
 	
 	protected override void HandleButton (string text) {
@@ -28,15 +32,10 @@ public class MainMenu : Menu {
 			case "Load Game": LoadGame(); break;
 			case "Quit Game": ExitGame(); break;
 			case "Change Player": ChangePlayer(); break;
-			case "Help": Help(); break;
-			case "About": About(); break;
 			default: break;
 		}
 	}
 
-	private void About() {
-	}
-	
 	protected override void HideCurrentMenu () {
 		GetComponent<MainMenu>().enabled = false;
 	}

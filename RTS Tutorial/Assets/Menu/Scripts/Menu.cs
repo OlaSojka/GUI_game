@@ -9,6 +9,7 @@ public class Menu : MonoBehaviour {
 	public Texture2D header;
 	public AudioClip clickSound;
 	public float clickVolume = 1.0f;
+	protected string previousMenu = "";
 	
 	protected string[] buttons;
 	
@@ -96,8 +97,5 @@ public class Menu : MonoBehaviour {
 	
 	protected void ExitGame() {
 		Application.Quit();
-	}
-
-	protected virtual void Help() {
 	}
 }

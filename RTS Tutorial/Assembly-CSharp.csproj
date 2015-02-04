@@ -49,7 +49,6 @@
      <Compile Include="Assets\Audio\AudioElement.cs" />
      <Compile Include="Assets\Menu\Scripts\AboutScreen.cs" />
      <Compile Include="Assets\Menu\Scripts\ConfirmDialog.cs" />
-     <Compile Include="Assets\Menu\Scripts\HelpScreen.cs" />
      <Compile Include="Assets\Menu\Scripts\LoadMenu.cs" />
      <Compile Include="Assets\Menu\Scripts\MainMenu.cs" />
      <Compile Include="Assets\Menu\Scripts\Menu.cs" />
@@ -74,7 +73,6 @@
      <Compile Include="Assets\SelectionList\SelectionList.cs" />
      <Compile Include="Assets\VictoryConditions\Conquest.cs" />
      <Compile Include="Assets\VictoryConditions\VictoryCondition.cs" />
-     <Compile Include="Assets\WorldObject\Building\Barracks\Barracks.cs" />
      <Compile Include="Assets\WorldObject\Building\Building.cs" />
      <Compile Include="Assets\WorldObject\Building\Buildings.cs" />
      <Compile Include="Assets\WorldObject\Building\ScienceFacility\ScienceFacility.cs" />
@@ -89,7 +87,6 @@
      <Compile Include="Assets\WorldObject\Unit\ArmouredTruck\TruckProjectile.cs" />
      <Compile Include="Assets\WorldObject\Unit\Goliath\Goliath.cs" />
      <Compile Include="Assets\WorldObject\Unit\Goliath\GoliathProjectile.cs" />
-     <Compile Include="Assets\WorldObject\Unit\Soldier\Soldier.cs" />
      <Compile Include="Assets\WorldObject\Unit\Tank\Tank.cs" />
      <Compile Include="Assets\WorldObject\Unit\Tank\TankProjectile.cs" />
      <Compile Include="Assets\WorldObject\Unit\Unit.cs" />
@@ -98,6 +95,7 @@
      <Compile Include="Assets\WorldObject\Worker\WorkerUnit.cs" />
      <Compile Include="Assets\WorldObject\WorldObject.cs" />
      <None Include="Assets\Json.NET\Newtonsoft.Json.xml" />
+     <None Include="Assets\Standard Assets\Skyboxes\_skybox info.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/4.6.1/UnityEngine.UI.dll</HintPath>
  </Reference>

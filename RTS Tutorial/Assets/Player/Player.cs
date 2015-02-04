@@ -23,7 +23,6 @@ public class Player : MonoBehaviour {
 	private int t=0;
 	public void AddResourcesAuto() {
 		int timeLeft = Convert.ToInt32(Time.time);
-		//Debug.Log (timeLeft);
 		if(timeLeft!=t)
 			if(timeLeft%5==0)
 			{
